@@ -1,0 +1,46 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+  .container{
+    margin: 30px auto;
+    max-width: 600px;
+  }
+
+    .box1{
+        display: block;
+        background:#007BFF;
+        text-decoration:none;
+        color:rgb(255, 255, 255);
+        font-size:1.5em;
+        font-family:sans-serif;
+        width:90px;
+        margin:0 auto;
+        border-radius:10px;
+        text-align: center;
+      }
+    
+      
+      p {
+        line-height:1
+      }
+
+      .icon{
+        width: 100px; 
+        height: auto; 
+        margin-left: 45%;
+    }
+    
+    .trim-image-to-circle {
+      background-image: url("summerriver.jpg");
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background-position: left top;
+      display: inline-block;
+      background-position: center center;
+
+      }
+   
+      

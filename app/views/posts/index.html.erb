@@ -1,0 +1,72 @@
+<div class="container2">
+
+<h3>投稿を検索</h3>
+ <%= form_tag({controller:"posts",action:"index"}, method: :get) do %>
+   <%= text_field_tag :search %>
+   <%= submit_tag '検索する'  %>
+<% end %>
+</div>
+
+<% @posts.each do |t| %>  
+<div class="media ml-4 mr-4">
+<%= image_tag t.image_url, size: "64×64" if t.image? %>
+  <div class="media-body">
+    <h5 class="mt-0"><%= t.name %> <%= t.user.email %>
+    <a href="/users/<%= t.user.id %>"><%= t.user.name %></a></h5>
+    <%= t.body %>
+ 
+
+    <% if user_signed_in? && current_user.id == t.user_id %>  
+    
+        <%= link_to "編集",edit_post_path(t.id) %>
+       
+        <%= link_to "詳細へ", post_path(t.id) %>
+        <%= button_to "削除する", post_path(t.id), method: :delete %>
+       
+        
+        <% if user_signed_in? %>
+            <% if current_user.already_liked?(t) %>
+                <%= link_to post_like_path(id: t.id, post_id: t.id), method: :delete do %>
+                    <i class="fas fa-heart"></i><%= t.likes.count %>
+                <% end %>
+            <% else %>
+                <%= link_to post_likes_path(id: t.id, post_id: t.id), method: :post do %>
+                    <i class="far fa-heart"></i><%= t.likes.count %>
+                <% end %>
+            <% end %>
+            <% else %>
+                <i class="far fa-heart"></i><%= t.likes.count %>
+            <% end %>
+             <%= t.created_at %>
+            
+    <% end %>  
+    </div>
+</div>
+<% end %>
+<br>
+
+
+
+
+<div class="container2">
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+</div>

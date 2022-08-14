@@ -1,0 +1,35 @@
+<div class="container">
+<h1>ユーザー情報</h1>
+
+<p><h2 style="text-align:center"> 
+<p class="trim-image-to-circle">
+    <% if @user.image? %>                                                              
+      <%= image_tag @user.image.url, class: "rounded-circle", size: "150x150" %>
+    <% else %>
+      <%= image_tag "default.jpg", class: "rounded-circle", size: "150x150" %>
+    <% end %>
+</p>
+    
+<p>名前 : <%= @user.name %></p>
+<p>メールアドレス : <%= @user.email %></p>
+<p>一言 : <%= @user.profile %></h2></p>
+
+
+<% if current_user.id == @user.id %>
+  <%= link_to "編集する", edit_user_registration_path %>
+<% end %>
+
+</div>
+
+<div class="container">
+<h2>ユーザーの投稿一覧</h2>
+<% @user.posts.each do |t| %>
+  <%= t.user.name %>
+  <%= t.body %>
+<% end %>
+
+
+<%= render "relationships/follow_button", user: @user %>
+
+<%= link_to "投稿一覧に戻る", posts_path %>
+</div>
